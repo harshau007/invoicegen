@@ -27,6 +27,8 @@ public class InvoiceService {
         }
 
         param.put("invoiceData", invoiceData);
+        param.put("headerImageUrl", "src/main/resources/static/header.png");
+        param.put("footerImageUrl", "src/main/resources/static/footer.png");
         templateEngine.render("invoice.jte", param, output);
         return output.toString();
     }

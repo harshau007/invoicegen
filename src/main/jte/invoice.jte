@@ -1,6 +1,8 @@
 @import com.harsh.InvoiceGen.dto.InvoiceData
 
 @param InvoiceData invoiceData
+@param String headerImageUrl
+@param String footerImageUrl
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,31 +22,24 @@
             background-color: #fff;
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px;
+            padding: 0 40px 40px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
-        .header-footer {
-            background-color: #0073e6;
-            color: #fff;
+        .header, .footer {
             text-align: center;
-            padding: 15px;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 8px 8px 0 0;
+            width: 100%;
         }
-        .footer {
-            background-color: #0073e6;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            font-size: 0.9em;
-            border-radius: 0 0 8px 8px;
+        .header img, .footer img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
         .invoice-header {
             text-align: center;
             color: #333;
-            margin: 30px 0;
         }
         .invoice-header h1 {
             color: #0073e6;
@@ -64,6 +59,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
         .invoice-table th, .invoice-table td {
             border: 1px solid #e1e4e8;
@@ -88,7 +84,13 @@
 </head>
 <body>
 <div class="invoice-container">
-    <div class="header-footer">Company Name</div>
+    @if(headerImageUrl.length() != 0)
+        <div class="header">
+            <img src="${headerImageUrl}" alt="Header Image">
+        </div>
+    @else
+        <span></span>
+    @endif
 
     <div class="invoice-header">
         <h1>Invoice</h1>
@@ -133,7 +135,14 @@
         </tfoot>
     </table>
 
-    <div class="footer">Thank you for your business!</div>
+    @if(footerImageUrl.length() != 0)
+        <div class="footer">
+            <img src="${footerImageUrl}" alt="Footer Image">
+        </div>
+    @else
+        <p>Thank you for your business!</p>
+    @endif
+
 </div>
 </body>
 </html>

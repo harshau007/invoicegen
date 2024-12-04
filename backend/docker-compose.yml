@@ -1,0 +1,25 @@
+services:
+  caddy:
+    image: caddy
+    container_name: "caddy"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - caddy
+
+  invoicegen:
+    image: invoicegen:latest
+    container_name: "invoicegen"
+    ports:
+      - "8080:8080"
+    networks:
+      - caddy
+    depends_on:
+      - caddy
+networks:
+  caddy:
+    name: caddy
+    driver: bridge

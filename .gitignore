@@ -34,3 +34,6 @@ build/
 
 ### JTE ###
 /jte-classes/
+
+### Node Modules
+node_modules
